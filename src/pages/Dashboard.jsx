@@ -2,6 +2,7 @@ import { useLoaderData } from "react-router-dom";
 import { createTask, fetchData } from "../helpers";
 import Intro from "../components/Intro";
 import AddTaskForm from "../components/AddTaskForm";
+import AddBreakdownTaskForm from "../components/AddBreakdownTaskForm";
 import { toast } from "react-toastify";
 
 export function dashboardLoader() {
@@ -41,7 +42,7 @@ export async function dashboardAction({ request }) {
 }
 
 const Dashboard = () => {
-  const { userName } = useLoaderData();
+  const { userName, tasks } = useLoaderData();
   return (
     <>
       {userName ? (
@@ -50,12 +51,20 @@ const Dashboard = () => {
             Welcome back, <span className="accent">{userName}</span>
           </h1>
           <div className="grid-sm">
-            {/* {tasks ? () : ()} */}
-            <div className="grid-lg">
-              <div className="flex-lg">
+            {tasks && tasks.length > 0 ? (
+              <div className="grid-lg">
+                <div className="flex-lg">
+                  <AddTaskForm />
+                  <AddBreakdownTaskForm tasks={tasks} />
+                </div>
+              </div>
+            ) : (
+              <div className="grid-sm">
+                <p>prioritization is the secret to getting things done</p>
+                <p>create a task to get started</p>
                 <AddTaskForm />
               </div>
-            </div>
+            )}
           </div>
         </div>
       ) : (
