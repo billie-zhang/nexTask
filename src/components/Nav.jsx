@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import logomark from "../assets/logomark.svg";
 import { Form, NavLink } from "react-router-dom";
 import { TrashIcon } from "@heroicons/react/24/solid";
@@ -28,6 +29,9 @@ const Nav = ({ userName }) => {
       )}
     </nav>
   );
+};
+Nav.propTypes = {
+  userName: PropTypes.string,
 };
 
 export default Nav;
