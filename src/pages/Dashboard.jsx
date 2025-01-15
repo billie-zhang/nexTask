@@ -1,14 +1,14 @@
 import { useLoaderData } from "react-router-dom";
-import { createTask, fetchData } from "../helpers";
+import { createGoal, fetchData } from "../helpers";
 import Intro from "../components/Intro";
-import AddTaskForm from "../components/AddTaskForm";
+import AddGoalForm from "../components/AddGoalForm";
 import AddBreakdownTaskForm from "../components/AddBreakdownTaskForm";
 import { toast } from "react-toastify";
 
 export function dashboardLoader() {
   const userName = fetchData("userName");
-  const tasks = fetchData("tasks");
-  return { userName, tasks };
+  const goals = fetchData("goals");
+  return { userName, goals };
 }
 
 // action
@@ -26,23 +26,23 @@ export async function dashboardAction({ request }) {
     }
   }
 
-  if (_action === "createTask") {
+  if (_action === "createGoal") {
     try {
-      // create task
-      createTask({
-        name: values.taskName,
+      // create goal
+      createGoal({
+        name: values.goalName,
         priorityLevel: values.priorityLevel,
       });
 
-      return toast.success(`Task created: ${values.taskName}`);
+      return toast.success(`Goal created: ${values.goalName}`);
     } catch (error) {
-      throw new Error("There was a problem creating your task.");
+      throw new Error("There was a problem creating your goal.");
     }
   }
 }
 
 const Dashboard = () => {
-  const { userName, tasks } = useLoaderData();
+  const { userName, goals } = useLoaderData();
   return (
     <>
       {userName ? (
@@ -51,18 +51,18 @@ const Dashboard = () => {
             Welcome back, <span className="accent">{userName}</span>
           </h1>
           <div className="grid-sm">
-            {tasks && tasks.length > 0 ? (
+            {goals && goals.length > 0 ? (
               <div className="grid-lg">
                 <div className="flex-lg">
-                  <AddTaskForm />
-                  <AddBreakdownTaskForm tasks={tasks} />
+                  <AddGoalForm />
+                  <AddBreakdownTaskForm goals={goals} />
                 </div>
               </div>
             ) : (
               <div className="grid-sm">
                 <p>prioritization is the secret to getting things done</p>
-                <p>create a task to get started</p>
-                <AddTaskForm />
+                <p>create a goal to get started</p>
+                <AddGoalForm />
               </div>
             )}
           </div>
