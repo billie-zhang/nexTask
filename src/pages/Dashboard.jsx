@@ -1,5 +1,5 @@
 import { useLoaderData } from "react-router-dom";
-import { createGoal, fetchData } from "../helpers";
+import { createGoal, fetchData, createTask } from "../helpers";
 import Intro from "../components/Intro";
 import AddGoalForm from "../components/AddGoalForm";
 import AddBreakdownTaskForm from "../components/AddBreakdownTaskForm";
@@ -37,6 +37,21 @@ export async function dashboardAction({ request }) {
       return toast.success(`Goal created: ${values.goalName}`);
     } catch (error) {
       throw new Error("There was a problem creating your goal.");
+    }
+  }
+
+  if (_action === "createTask") {
+    try {
+      // create task
+      createTask({
+        name: values.taskName,
+        estimatedTime: values.estimatedTime,
+        goalId: values.newBreakdownTaskGoal,
+      });
+
+      return toast.success(`Task created: ${values.taskName}`);
+    } catch (error) {
+      throw new Error("There was a problem creating your task.");
     }
   }
 }

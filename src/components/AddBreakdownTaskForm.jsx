@@ -1,12 +1,19 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import PropTypes from "prop-types";
 import { useFetcher } from "react-router-dom";
 
 const AddBreakdownTaskForm = ({ goals }) => {
   const fetcher = useFetcher();
-
+  const isSubmitting = fetcher.state === "submitting";
   const formRef = useRef();
   const focusRef = useRef();
+
+  useEffect(() => {
+    if (!isSubmitting) {
+      formRef.current.reset();
+      focusRef.current.focus();
+    }
+  }, [isSubmitting]);
 
   return (
     <div className="form-wrapper">
@@ -42,12 +49,8 @@ const AddBreakdownTaskForm = ({ goals }) => {
               inputMode="numeric"
             />
           </div>
-          <input type="hidden" name="_action" value="createTask" />
-          <button type="submit" className="btn btn--dark">
-            <span>Create Task</span>
-          </button>
         </div>
-        <div className="grid-xs">
+        <div className="grid-xs" hidden={goals.length === 1}>
           <label htmlFor="newBreakdownTaskGoal">Goal Category</label>
           <select
             name="newBreakdownTaskGoal"
@@ -65,6 +68,14 @@ const AddBreakdownTaskForm = ({ goals }) => {
               })}
           </select>
         </div>
+        <input type="hidden" name="_action" value="createTask" />
+        <button
+          type="submit"
+          className="btn btn--dark "
+          disabled={isSubmitting}
+        >
+          <span>Add Task</span>
+        </button>
       </fetcher.Form>
     </div>
   );

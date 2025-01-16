@@ -21,6 +21,22 @@ export const createGoal = ({ name, priorityLevel }) => {
   return localStorage.setItem("goals", JSON.stringify([...goals, newItem]));
 };
 
+// create task
+export const createTask = ({ name, estimatedTime, goalId }) => {
+  const newItem = {
+    id: crypto.randomUUID(),
+    name: name,
+    createdAt: Date.now(),
+    estimatedTime: +estimatedTime,
+    goalId: goalId,
+  };
+  const existingTasks = fetchData("tasks") || [];
+  return localStorage.setItem(
+    "tasks",
+    JSON.stringify([...existingTasks, newItem])
+  );
+};
+
 // delete item
 export const deleteItem = ({ key }) => {
   return localStorage.removeItem(key);
