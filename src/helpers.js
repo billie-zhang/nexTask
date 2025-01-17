@@ -49,3 +49,11 @@ export const deleteItem = ({ key }) => {
 };
 
 // FORMATTING
+
+// formating percentages
+export const formatPercentage = (value) => {
+  return value.toLocaleString(undefined, {
+    style: "percent",
+    minimumFractionDigits: 0,
+  });
+};
