@@ -2,6 +2,7 @@ import { useLoaderData } from "react-router-dom";
 import { createGoal, fetchData, createTask } from "../helpers";
 import Intro from "../components/Intro";
 import AddGoalForm from "../components/AddGoalForm";
+import GoalItem from "../components/GoalItem";
 import AddBreakdownTaskForm from "../components/AddBreakdownTaskForm";
 import { toast } from "react-toastify";
 
@@ -71,6 +72,12 @@ const Dashboard = () => {
                 <div className="flex-lg">
                   <AddGoalForm />
                   <AddBreakdownTaskForm goals={goals} />
+                </div>
+                <h2>Existing Goals</h2>
+                <div className="budgets">
+                  {goals.map((goal) => (
+                    <GoalItem key={goal.id} goal={goal} />
+                  ))}
                 </div>
               </div>
             ) : (

@@ -37,7 +37,15 @@ export const createTask = ({ name, estimatedTime, goalId }) => {
   );
 };
 
+// total tasks completed
+export const totalTasksCompleted = (goalId) => {
+  const tasks = fetchData("tasks") || [];
+  return tasks.filter((task) => task.goalId === goalId).length;
+};
+
 // delete item
 export const deleteItem = ({ key }) => {
   return localStorage.removeItem(key);
 };
+
+// FORMATTING
