@@ -8,7 +8,7 @@ const Table = ({ tasks }) => {
       <table>
         <thead>
           <tr>
-            {["Task", "Goal", "Estimated Time", "Completed"].map((i, index) => (
+            {["Task", "Estimated Time", "Completed", "Goal"].map((i, index) => (
               <th key={index}>{i}</th>
             ))}
           </tr>
@@ -16,8 +16,7 @@ const Table = ({ tasks }) => {
         <tbody>
           {tasks.map((task) => (
             <tr key={task.id}>
-              {task.name}
-              <TaskItem />
+              <TaskItem task={task} />
             </tr>
           ))}
         </tbody>

@@ -49,6 +49,8 @@ export const deleteItem = ({ key }) => {
 };
 
 // FORMATTING
+export const formatDateToLocaleString = (date) =>
+  new Date(date).toLocaleDateString();
 
 // formating percentages
 export const formatPercentage = (value) => {
