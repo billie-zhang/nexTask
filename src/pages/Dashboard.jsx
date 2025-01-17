@@ -50,6 +50,7 @@ export async function dashboardAction({ request }) {
         name: values.taskName,
         estimatedTime: values.estimatedTime,
         goalId: values.newBreakdownTaskGoal,
+        completed: false,
       });
 
       return toast.success(`Task created: ${values.taskName}`);

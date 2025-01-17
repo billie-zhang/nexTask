@@ -22,13 +22,14 @@ export const createGoal = ({ name, priorityLevel }) => {
 };
 
 // create task
-export const createTask = ({ name, estimatedTime, goalId }) => {
+export const createTask = ({ name, estimatedTime, goalId, completed }) => {
   const newItem = {
     id: crypto.randomUUID(),
     name: name,
     createdAt: Date.now(),
     estimatedTime: +estimatedTime,
     goalId: goalId,
+    completed: completed,
   };
   const existingTasks = fetchData("tasks") || [];
   return localStorage.setItem(
