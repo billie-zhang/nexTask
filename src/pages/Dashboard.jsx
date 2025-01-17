@@ -5,11 +5,13 @@ import AddGoalForm from "../components/AddGoalForm";
 import GoalItem from "../components/GoalItem";
 import AddBreakdownTaskForm from "../components/AddBreakdownTaskForm";
 import { toast } from "react-toastify";
+import Table from "../components/Table";
 
 export function dashboardLoader() {
   const userName = fetchData("userName");
   const goals = fetchData("goals");
-  return { userName, goals };
+  const tasks = fetchData("tasks");
+  return { userName, goals, tasks };
 }
 
 // action
@@ -58,7 +60,7 @@ export async function dashboardAction({ request }) {
 }
 
 const Dashboard = () => {
-  const { userName, goals } = useLoaderData();
+  const { userName, goals, tasks } = useLoaderData();
   return (
     <>
       {userName ? (
@@ -79,6 +81,14 @@ const Dashboard = () => {
                     <GoalItem key={goal.id} goal={goal} />
                   ))}
                 </div>
+                {tasks && tasks.length > 0 && (
+                  <div className="grid-md">
+                    <h2>Current Tasks</h2>
+                    <Table
+                      tasks={tasks.sort((a, b) => b.createdAt - a.createdAt)}
+                    />
+                  </div>
+                )}
               </div>
             ) : (
               <div className="grid-sm">
