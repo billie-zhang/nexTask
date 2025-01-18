@@ -1,4 +1,4 @@
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, Link } from "react-router-dom";
 import { createGoal, fetchData, createTask } from "../helpers";
 import Intro from "../components/Intro";
 import AddGoalForm from "../components/AddGoalForm";
@@ -86,8 +86,15 @@ const Dashboard = () => {
                   <div className="grid-md">
                     <h2>Current Tasks</h2>
                     <Table
-                      tasks={tasks.sort((a, b) => b.createdAt - a.createdAt)}
+                      tasks={tasks
+                        .sort((a, b) => b.createdAt - a.createdAt)
+                        .slice(0, 5)}
                     />
+                    {
+                      <Link to="tasks" className="btn btn--dark">
+                        View all tasks
+                      </Link>
+                    }
                   </div>
                 )}
               </div>
