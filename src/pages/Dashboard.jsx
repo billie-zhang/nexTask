@@ -1,5 +1,5 @@
 import { useLoaderData, Link } from "react-router-dom";
-import { createGoal, fetchData, createTask } from "../helpers";
+import { createGoal, fetchData, createTask, deleteItem } from "../helpers";
 import Intro from "../components/Intro";
 import AddGoalForm from "../components/AddGoalForm";
 import GoalItem from "../components/GoalItem";
@@ -56,6 +56,20 @@ export async function dashboardAction({ request }) {
       return toast.success(`Task created: ${values.taskName}`);
     } catch (error) {
       throw new Error("There was a problem creating your task.");
+    }
+  }
+
+  if (_action === "deleteTask") {
+    try {
+      // delete task
+      deleteItem({
+        key: "tasks",
+        id: values.taskId,
+      });
+
+      return toast.success("Task deleted");
+    } catch (error) {
+      throw new Error("There was a problem deleting your task.");
     }
   }
 }

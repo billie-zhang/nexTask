@@ -8,10 +8,26 @@ export const fetchData = (key) => {
   return JSON.parse(localStorage.getItem(key));
 };
 
+// get all items from local storage
+export const getAllMatchingItems = ({ category, key, value }) => {
+  const data = fetchData(category) || [];
+  return data.filter((item) => item[key] === value);
+};
+
+// delete item from local storage
+export const deleteItem = ({ key, id }) => {
+  const existingData = fetchData(key) || [];
+  if (id) {
+    const newData = existingData.filter((item) => item.id !== id);
+    return localStorage.setItem(key, JSON.stringify(newData));
+  }
+  return localStorage;
+};
+
 // create goal
 export const createGoal = ({ name, priorityLevel }) => {
   const newItem = {
-    id: crypto.randomUUID(),
+    gId: crypto.randomUUID(),
     name: name,
     createdAt: Date.now(),
     priorityLevel: +priorityLevel,
@@ -42,11 +58,6 @@ export const createTask = ({ name, estimatedTime, goalId, completed }) => {
 export const totalTasksCompleted = (goalId) => {
   const tasks = fetchData("tasks") || [];
   return tasks.filter((task) => task.goalId === goalId).length;
-};
-
-// delete item
-export const deleteItem = ({ key }) => {
-  return localStorage.removeItem(key);
 };
 
 // FORMATTING

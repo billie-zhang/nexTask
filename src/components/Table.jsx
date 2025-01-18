@@ -15,9 +15,11 @@ const Table = ({ tasks }) => {
       <table>
         <thead>
           <tr>
-            {["Task", "Estimated Time", "Completed", "Goal"].map((i, index) => (
-              <th key={index}>{i}</th>
-            ))}
+            {["Task", "Estimated Time", "Completed", "Goal", ""].map(
+              (i, index) => (
+                <th key={index}>{i}</th>
+              )
+            )}
           </tr>
         </thead>
         <tbody>

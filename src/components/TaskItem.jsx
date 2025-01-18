@@ -1,8 +1,21 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import { fetchData, formatDateToLocaleString } from "../helpers";
+import {
+  fetchData,
+  formatDateToLocaleString,
+  getAllMatchingItems,
+} from "../helpers";
+import { Link, useFetcher } from "react-router-dom";
+import { TrashIcon } from "@heroicons/react/24/solid";
 
 const TaskItem = ({ task, onTaskUpdate }) => {
+  const fetcher = useFetcher();
+  const goal = getAllMatchingItems({
+    category: "goals",
+    key: "name",
+    value: task.goalId,
+  })[0];
+
   const [completed, setCompleted] = useState(task.completed);
 
   const handleCheckboxChange = () => {
@@ -30,6 +43,25 @@ const TaskItem = ({ task, onTaskUpdate }) => {
           onChange={handleCheckboxChange}
         />
       </td>
+      <td>
+        <Link to={`/goal/${goal.name}`} style={{ "--accent": goal.color }}>
+          {goal.name}
+        </Link>
+      </td>
+      <td>
+        <fetcher.Form method="post" className="grid-sm">
+          <input type="hidden" name="_action" value="deleteTask" />
+          <button
+            name="taskId"
+            value={task.id}
+            type="submit"
+            className="btn btn--warning"
+            aria-label={`Delete ${task.name} task`}
+          >
+            <TrashIcon width={20} />
+          </button>
+        </fetcher.Form>
+      </td>
       {/* to display date */}
       {/* <td>{formatDateToLocaleString(task.createdAt)}</td> */}
     </>
@@ -40,6 +72,7 @@ TaskItem.propTypes = {
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     estimatedTime: PropTypes.number.isRequired,
+    goalId: PropTypes.string.isRequired,
     completed: PropTypes.bool,
     createdAt: PropTypes.instanceOf(Date).isRequired,
   }).isRequired,
