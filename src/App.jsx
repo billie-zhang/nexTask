@@ -5,7 +5,7 @@ import Dashboard, { dashboardAction, dashboardLoader } from "./pages/Dashboard";
 import Error from "./pages/Error";
 import Main, { mainLoader } from "./layouts/Main";
 import { logoutAction } from "./actions/logout";
-import TasksPage, { tasksLoader } from "./pages/TasksPage";
+import TasksPage, { tasksAction, tasksLoader } from "./pages/TasksPage";
 
 const router = createBrowserRouter([
   {
@@ -25,6 +25,7 @@ const router = createBrowserRouter([
         path: "tasks",
         element: <TasksPage />,
         loader: tasksLoader,
+        action: tasksAction,
       },
       {
         path: "logout",

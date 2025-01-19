@@ -1,11 +1,31 @@
 import React from "react";
-import { fetchData } from "../helpers";
+import { deleteItem, fetchData } from "../helpers";
 import { useLoaderData } from "react-router-dom";
 import Table from "../components/Table";
+import { toast } from "react-toastify";
 
-export function tasksLoader() {
+export async function tasksLoader() {
   const tasks = fetchData("tasks");
   return { tasks };
+}
+
+export async function tasksAction({ request }) {
+  const data = await request.formData();
+  const { _action, ...values } = Object.fromEntries(data);
+
+  if (_action === "deleteTask") {
+    try {
+      // delete task
+      deleteItem({
+        key: "tasks",
+        id: values.taskId,
+      });
+
+      return toast.success("Task deleted");
+    } catch (error) {
+      throw new Error("There was a problem deleting your task.");
+    }
+  }
 }
 
 const TasksPage = () => {
