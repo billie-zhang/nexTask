@@ -27,7 +27,7 @@ export const deleteItem = ({ key, id }) => {
 // create goal
 export const createGoal = ({ name, priorityLevel }) => {
   const newItem = {
-    gId: crypto.randomUUID(),
+    id: crypto.randomUUID(),
     name: name,
     createdAt: Date.now(),
     priorityLevel: +priorityLevel,

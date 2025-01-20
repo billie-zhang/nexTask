@@ -12,7 +12,7 @@ const TaskItem = ({ task, onTaskUpdate }) => {
   const fetcher = useFetcher();
   const goal = getAllMatchingItems({
     category: "goals",
-    key: "name",
+    key: "id",
     value: task.goalId,
   })[0];
 
