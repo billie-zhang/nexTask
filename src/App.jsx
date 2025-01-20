@@ -6,6 +6,7 @@ import Error from "./pages/Error";
 import Main, { mainLoader } from "./layouts/Main";
 import { logoutAction } from "./actions/logout";
 import TasksPage, { tasksAction, tasksLoader } from "./pages/TasksPage";
+import GoalPage, { goalLoader } from "./pages/GoalPage";
 
 const router = createBrowserRouter([
   {
@@ -22,10 +23,18 @@ const router = createBrowserRouter([
         errorElement: <Error />,
       },
       {
+        path: "goal/:name",
+        element: <GoalPage />,
+        loader: goalLoader,
+        // action: tasksAction,
+        errorElement: <Error />,
+      },
+      {
         path: "tasks",
         element: <TasksPage />,
         loader: tasksLoader,
         action: tasksAction,
+        errorElement: <Error />,
       },
       {
         path: "logout",
