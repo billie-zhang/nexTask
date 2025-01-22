@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import TaskItem from "./TaskItem";
 import { fetchData } from "../helpers";
 
-const Table = ({ tasks }) => {
+const Table = ({ tasks, showGoal = true }) => {
   const [taskList, setTaskList] = useState(fetchData("tasks") || []);
 
   const handleTaskUpdate = (updatedTasks) => {
@@ -15,17 +15,25 @@ const Table = ({ tasks }) => {
       <table>
         <thead>
           <tr>
-            {["Task", "Estimated Time", "Completed", "Goal", ""].map(
-              (i, index) => (
-                <th key={index}>{i}</th>
-              )
-            )}
+            {[
+              "Task",
+              "Estimated Time",
+              "Completed",
+              showGoal ? "Goal" : "",
+              "",
+            ].map((i, index) => (
+              <th key={index}>{i}</th>
+            ))}
           </tr>
         </thead>
         <tbody>
           {tasks.map((task) => (
             <tr key={task.id}>
-              <TaskItem task={task} onTaskUpdate={handleTaskUpdate} />
+              <TaskItem
+                task={task}
+                onTaskUpdate={handleTaskUpdate}
+                showGoal={showGoal}
+              />
             </tr>
           ))}
         </tbody>
@@ -40,6 +48,7 @@ Table.propTypes = {
       name: PropTypes.string.isRequired,
     })
   ).isRequired,
+  showGoal: PropTypes.bool,
 };
 
 export default Table;

@@ -8,7 +8,7 @@ import {
 import { Link, useFetcher } from "react-router-dom";
 import { TrashIcon } from "@heroicons/react/24/solid";
 
-const TaskItem = ({ task, onTaskUpdate }) => {
+const TaskItem = ({ task, onTaskUpdate, showGoal }) => {
   const fetcher = useFetcher();
   const goal = getAllMatchingItems({
     category: "goals",
@@ -43,11 +43,13 @@ const TaskItem = ({ task, onTaskUpdate }) => {
           onChange={handleCheckboxChange}
         />
       </td>
-      <td>
-        <Link to={`/goal/${goal.name}`} style={{ "--accent": goal.color }}>
-          {goal.name}
-        </Link>
-      </td>
+      {showGoal && (
+        <td>
+          <Link to={`/goal/${goal.name}`} style={{ "--accent": goal.color }}>
+            {goal.name}
+          </Link>
+        </td>
+      )}
       <td>
         <fetcher.Form method="post" className="grid-sm">
           <input type="hidden" name="_action" value="deleteTask" />
@@ -77,6 +79,7 @@ TaskItem.propTypes = {
     createdAt: PropTypes.instanceOf(Date).isRequired,
   }).isRequired,
   onTaskUpdate: PropTypes.func.isRequired,
+  showGoal: PropTypes.bool,
 };
 
 export default TaskItem;
