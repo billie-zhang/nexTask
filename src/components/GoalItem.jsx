@@ -1,8 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { formatPercentage, totalTasksCompleted } from "../helpers";
+import { Form, Link } from "react-router-dom";
 
-const GoalItem = ({ goal }) => {
+const GoalItem = ({ goal, showDelete = false }) => {
   const { id, name, priorityLevel, color } = goal;
   const tasksCompleted = totalTasksCompleted(id);
 
@@ -22,13 +23,41 @@ const GoalItem = ({ goal }) => {
         <small>{tasksCompleted} tasks completed</small>
         <small>... tasks remaining</small>
       </div>
+      {showDelete ? (
+        <div className="flex-sm">
+          <Form
+            method="post"
+            action="delete"
+            onSubmit={(event) => {
+              if (!confirm("Are you sure you want to delete this goal?")) {
+                event.preventDefault();
+              }
+            }}
+          >
+            <button name="goalId" value={id} type="submit" className="btn">
+              <span>Delete Goal</span>
+            </button>
+          </Form>
+        </div>
+      ) : (
+        <div className="flex-sm">
+          <Link
+            to={`/goal/${name}`}
+            style={{ "--accent": color }}
+            className="btn btn--primary"
+          >
+            <span>View Details</span>
+          </Link>
+        </div>
+      )}
     </div>
   );
 };
 
 GoalItem.propTypes = {
+  showDelete: PropTypes.bool,
   goal: PropTypes.shape({
-    id: PropTypes.number.isRequired,
+    id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     priorityLevel: PropTypes.number.isRequired,
     color: PropTypes.string,

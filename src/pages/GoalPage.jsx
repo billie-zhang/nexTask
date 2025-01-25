@@ -77,7 +77,7 @@ const GoalPage = () => {
         Overview
       </h1>
       <div className="flex-lg">
-        <GoalItem goal={goal} />
+        <GoalItem goal={goal} showDelete={true} />
         <AddBreakdownTaskForm goals={[goal]} />
       </div>
       {tasks && tasks.length > 0 && (

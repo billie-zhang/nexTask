@@ -5,6 +5,7 @@ import Dashboard, { dashboardAction, dashboardLoader } from "./pages/Dashboard";
 import Error from "./pages/Error";
 import Main, { mainLoader } from "./layouts/Main";
 import { logoutAction } from "./actions/logout";
+import { deleteGoal } from "./actions/deleteGoal";
 import TasksPage, { tasksAction, tasksLoader } from "./pages/TasksPage";
 import GoalPage, { goalAction, goalLoader } from "./pages/GoalPage";
 
@@ -28,6 +29,12 @@ const router = createBrowserRouter([
         loader: goalLoader,
         action: goalAction,
         errorElement: <Error />,
+        children: [
+          {
+            path: "delete",
+            action: deleteGoal,
+          },
+        ],
       },
       {
         path: "tasks",
