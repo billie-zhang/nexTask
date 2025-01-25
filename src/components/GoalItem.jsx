@@ -27,7 +27,7 @@ const GoalItem = ({ goal, showDelete = false }) => {
         <div className="flex-sm">
           <Form
             method="post"
-            action="delete"
+            action={`/goal/${name}/delete/${id}`}
             onSubmit={(event) => {
               if (!confirm("Are you sure you want to delete this goal?")) {
                 event.preventDefault();

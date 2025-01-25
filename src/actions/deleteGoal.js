@@ -3,16 +3,22 @@ import { deleteItem, getAllMatchingItems } from "../helpers";
 import { redirect } from "react-router-dom";
 
 export function deleteGoal({ params }) {
+  const { id } = params;
+
+  if (!id) {
+    throw new Error("Goal ID is missing.");
+  }
+
   try {
     deleteItem({
       key: "goals",
-      id: params.id,
+      id,
     });
 
     const associatedTasks = getAllMatchingItems({
       category: "tasks",
       key: "goalId",
-      value: params.id,
+      value: id,
     });
 
     associatedTasks.forEach((task) => {

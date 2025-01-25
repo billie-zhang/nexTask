@@ -31,7 +31,7 @@ const router = createBrowserRouter([
         errorElement: <Error />,
         children: [
           {
-            path: "delete",
+            path: "delete/:id",
             action: deleteGoal,
           },
         ],
