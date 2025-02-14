@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import logomark from "../assets/logomark.svg";
+import logo from "../assets/logo.png";
 import { Form, NavLink } from "react-router-dom";
 import { TrashIcon } from "@heroicons/react/24/solid";
 
@@ -8,7 +8,7 @@ const Nav = ({ userName }) => {
   return (
     <nav>
       <NavLink to="/" aria-label="Go to home">
-        <img src={logomark} alt="" height={30} />
+        <img src={logo} alt="" height={30} />
         <span>NexTask</span>
       </NavLink>
       {userName && (

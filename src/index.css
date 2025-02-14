@@ -32,11 +32,11 @@ svg {
   --lh-1-4: 1.4;
 
   /* colors */
-  --accent: 183 74% 44%;
-  --bkg: 190 60% 98%;
-  --text: 185 26% 9%;
-  --muted: 183 8% 55%;
-  --light: 180 14% 85%;
+  --accent: 7 16.2% 41.2%;
+  --bkg: 30 21.4% 94.5%;
+  --text: 0 0% 24.3%;
+  --muted: 30 8.1% 66.3%;
+  --light: 28 25.9% 77.3%;
   --warning: 4 66% 63%;
 
   /* utils */
@@ -297,6 +297,14 @@ main {
   place-items: start;
 }
 
+.footer-bar {
+  width: 100%;
+  height: 50px;
+  background-color: #3e3e3e;
+  bottom: 0;
+  left: 0;
+}
+
 /* navbar */
 nav {
   display: -webkit-box;
@@ -410,7 +418,8 @@ select {
   display: grid;
   gap: var(--space-lg);
   place-items: start;
-  width: 100%;
+  margin: 8vh;
+  width: full;
 }
 
 /* form */
@@ -428,8 +437,8 @@ select {
   border-radius: var(--round-lg);
   -webkit-box-shadow: 0.25em 0.3em 1em hsl(var(--muted) / 0.2);
   box-shadow: 0.25em 0.3em 1em hsl(var(--muted) / 0.2);
-  border-top: 0.15em solid white;
-  border-left: 0.15em solid white;
+  border-top: 0.15em solid #f9f7f6;
+  border-left: 0.15em solid #f9f7f6;
   border-right: 0.15em solid hsl(var(--bkg));
   border-bottom: 0.15em solid hsl(var(--bkg));
 }
