@@ -1,6 +1,9 @@
 const generateRandomColor = () => {
   const existingGoalLength = fetchData("goals")?.length || 0;
-  return `${existingGoalLength * 34} 65% 50%`;
+
+  const lightness = Math.max(5, Math.min(25, 30 - existingGoalLength * 2));
+
+  return `254 30% ${lightness}%`;
 };
 
 // Local storage
