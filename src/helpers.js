@@ -58,8 +58,22 @@ export const createTask = ({ name, estimatedTime, goalId, completed }) => {
   );
 };
 
+// tasks uncompleted
+export const totalTasksRemaining = (goalId) => {
+  const tasks = fetchData("tasks") || [];
+  return tasks.filter((task) => task.goalId === goalId && !task.completed)
+    .length;
+};
+
 // total tasks completed
 export const totalTasksCompleted = (goalId) => {
+  const tasks = fetchData("tasks") || [];
+  return tasks.filter((task) => task.goalId === goalId && task.completed)
+    .length;
+};
+
+// total tasks
+export const totalTasks = (goalId) => {
   const tasks = fetchData("tasks") || [];
   return tasks.filter((task) => task.goalId === goalId).length;
 };
