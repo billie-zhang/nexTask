@@ -32,7 +32,7 @@ export const deleteItem = ({ key, id }) => {
 export const createGoal = ({ name, priorityLevel }) => {
   const newItem = {
     id: crypto.randomUUID(),
-    name: name,
+    name: name.trim(),
     createdAt: Date.now(),
     priorityLevel: +priorityLevel,
     color: generateRandomColor(),
