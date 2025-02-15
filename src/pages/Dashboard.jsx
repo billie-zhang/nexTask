@@ -114,8 +114,10 @@ const Dashboard = () => {
               </div>
             ) : (
               <div className="grid-sm">
-                <p>prioritization is the secret to getting things done</p>
-                <p>create a goal to get started</p>
+                <p>
+                  Break your goals into manageable steps and track your progress
+                  effortlessly.
+                </p>
                 <AddGoalForm />
               </div>
             )}

@@ -80,7 +80,7 @@ h4,
 h5,
 h6 {
   font-weight: bold;
-  line-height: var(--lh-1);
+  line-height: var(--lh-1-1);
 }
 
 h1,
@@ -288,7 +288,7 @@ p {
 }
 
 main {
-  max-width: 1500px;
+  max-width: 85%;
   width: 100%;
   padding: var(--space-md) var(--space-md) var(--space-xl);
   margin-inline: auto;
@@ -416,10 +416,9 @@ select {
 .dashboard {
   display: -ms-grid;
   display: grid;
-  gap: var(--space-lg);
+  gap: var(--space-xl);
   place-items: start;
-  margin: 8vh;
-  width: full;
+  width: 100%;
 }
 
 /* form */

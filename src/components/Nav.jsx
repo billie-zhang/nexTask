@@ -8,8 +8,8 @@ const Nav = ({ userName }) => {
   return (
     <nav>
       <NavLink to="/" aria-label="Go to home">
-        <img src={logo} alt="" height={30} />
-        <span>NexTask</span>
+        <img src={logo} alt="" height={40} />
+        <h3>NexTask</h3>
       </NavLink>
       {userName && (
         <Form
