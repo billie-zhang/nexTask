@@ -1,8 +1,10 @@
-# React + Vite
+# nexTask
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+What if staying organized and achieving your goals felt effortless?
 
-Currently, two official plugins are available:
+NexTask turns big dreams into manageable steps, helping you track your progress and stay motivated
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+**try it out here**: https://thenextask.vercel.app/
+
+![nextask frames](https://github.com/user-attachments/assets/2ba58e19-2dbb-4972-bfee-30e7bce5d6f7)
+
